@@ -5,7 +5,8 @@
         "core": "*",
         "radio": "*",
         "microphone": "*",
-        "pxt-kitronik-motor-driver": "github:kitronikltd/pxt-kitronik-motor-driver#v0.0.7"
+        "pxt-kitronik-motor-driver": "github:kitronikltd/pxt-kitronik-motor-driver#v0.0.7",
+        "pxt-kitronik-klip-motor": "github:kitronikltd/pxt-kitronik-klip-motor#v1.2.0"
     },
     "files": [
         "main.blocks",
