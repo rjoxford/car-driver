@@ -19,17 +19,8 @@ radio.onReceivedValue(function (name, value) {
     if (name == "turn") {
         turn_only(value)
     }
-    basic.showString("BREAK")
     if (name == "forward") {
         drive_forward(value)
-    }
-    basic.showString("BREAK")
-    if (name == "right") {
-        if (value > 0) {
-            kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, value)
-        } else {
-            kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Reverse, Math.abs(value))
-        }
     }
 })
 function drive_forward (num: number) {
