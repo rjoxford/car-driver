@@ -50,7 +50,13 @@ basic.showLeds(`
     `)
 turn_only_thresh = 70
 loops.everyInterval(100, function () {
-    if (Math.abs(rturn) <= turn_only_thresh) {
-    	
+    if (Math.abs(rturn) >= turn_only_thresh) {
+        turn_only(rturn)
+    } else {
+        if (Math.abs(rturn) >= 30) {
+            drive_forward_and_turn(rforward, rturn)
+        } else {
+            drive_forward(rforward)
+        }
     }
 })
