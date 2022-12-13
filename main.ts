@@ -13,7 +13,13 @@ function turn_only (num: number) {
     }
 }
 function drive_forward_and_turn (forward: number, turn: number) {
-	
+    if (forward > 0) {
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, forward * ((0 - 0) / turn))
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, forward)
+    } else {
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Reverse, Math.abs(forward))
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Reverse, Math.abs(forward))
+    }
 }
 radio.onReceivedValue(function (name, value) {
     if (name == "turn") {
