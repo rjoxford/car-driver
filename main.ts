@@ -1,19 +1,15 @@
 function turn_only (turn: number) {
-    if (Math.abs(turn) > 70) {
-        if (turn < 0) {
-            kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, Math.abs(turn))
-            kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Reverse, Math.abs(turn))
-        }
-        if (turn < 0) {
-            kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Reverse, Math.abs(turn))
-            kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, Math.abs(turn))
-        }
-    } else {
-    	
+    if (turn > 0) {
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, turn)
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Reverse, turn)
+    }
+    if (turn < 0) {
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Reverse, Math.abs(turn))
+        kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, Math.abs(turn))
     }
 }
 function drive_forward_and_turn (forward: number, turn: number) {
-    if (forward > 0) {
+    if (turn > 0) {
         kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, forward * ((turn_only_thresh - turn) / turn))
         kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, forward)
     } else {
@@ -49,7 +45,7 @@ basic.showLeds(`
     . # # # .
     `)
 turn_only_thresh = 70
-loops.everyInterval(100, function () {
+loops.everyInterval(10, function () {
     if (Math.abs(rturn) >= turn_only_thresh) {
         turn_only(rturn)
     } else {
