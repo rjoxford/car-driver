@@ -9,7 +9,7 @@ function turn_only (turn: number) {
     }
 }
 function drive_forward_and_turn (forward: number, turn: number) {
-    if (turn > 0) {
+    if (turn < 0) {
         kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor1, kitronik_klip_motor.MotorDirection.Forward, forward * ((turn_only_thresh - turn) / turn))
         kitronik_klip_motor.motorOn(kitronik_klip_motor.Motors.Motor2, kitronik_klip_motor.MotorDirection.Forward, forward)
     } else {
@@ -45,11 +45,11 @@ basic.showLeds(`
     . # # # .
     `)
 turn_only_thresh = 70
-loops.everyInterval(10, function () {
+loops.everyInterval(50, function () {
     if (Math.abs(rturn) >= turn_only_thresh) {
         turn_only(rturn)
     } else {
-        if (Math.abs(rturn) >= 30) {
+        if (Math.abs(rturn) >= 40) {
             drive_forward_and_turn(rforward, rturn)
         } else {
             drive_forward(rforward)
